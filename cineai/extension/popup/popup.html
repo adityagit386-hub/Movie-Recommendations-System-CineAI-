@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>CineAI</title>
+  <link rel="stylesheet" href="popup.css" />
+</head>
+<body>
+  <div class="app" id="app">
+    <header class="topbar">
+      <div class="brand">
+        <span class="brand-mark">CI</span>
+        <span class="brand-name">CineAI</span>
+      </div>
+      <button id="darkModeToggle" class="icon-btn" title="Toggle dark mode" aria-label="Toggle dark mode">
+        <span id="darkModeIcon">&#9789;</span>
+      </button>
+    </header>
+
+    <section class="now-watching" id="nowWatching">
+      <p class="eyebrow">Now viewing</p>
+      <h2 id="currentTitle">Waiting for a supported page&hellip;</h2>
+      <p class="platform-tag" id="currentPlatform"></p>
+    </section>
+
+    <nav class="tabs" id="tabs">
+      <button class="tab active" data-tab="recommend">For You</button>
+      <button class="tab" data-tab="watchlist">Watchlist</button>
+      <button class="tab" data-tab="trending">Trending</button>
+      <button class="tab" data-tab="chat">Ask AI</button>
+    </nav>
+
+    <main class="panels">
+
+      <!-- ================= RECOMMEND PANEL ================= -->
+      <section class="panel active" id="panel-recommend">
+        <div class="filters">
+          <select id="filterGenre">
+            <option value="">Any genre</option>
+            <option>Action</option>
+            <option>Comedy</option>
+            <option>Drama</option>
+            <option>Sci-Fi</option>
+            <option>Thriller</option>
+            <option>Romance</option>
+            <option>Animation</option>
+          </select>
+          <select id="filterMood">
+            <option value="">Any mood</option>
+            <option value="feel_good">Feel-good</option>
+            <option value="intense">Intense</option>
+            <option value="relaxing">Relaxing</option>
+            <option value="thought_provoking">Thought-provoking</option>
+            <option value="scary">Scary</option>
+          </select>
+          <select id="filterLanguage">
+            <option value="">Any language</option>
+            <option>English</option>
+            <option>Hindi</option>
+            <option>Korean</option>
+            <option>Spanish</option>
+            <option>Japanese</option>
+          </select>
+          <select id="filterRuntime">
+            <option value="">Any runtime</option>
+            <option value="short">Under 100 min</option>
+            <option value="medium">100&ndash;140 min</option>
+            <option value="long">140+ min</option>
+          </select>
+        </div>
+        <button id="refreshRecs" class="primary-btn">Refresh recommendations</button>
+        <div id="recList" class="card-list"></div>
+      </section>
+
+      <!-- ================= WATCHLIST PANEL ================= -->
+      <section class="panel" id="panel-watchlist">
+        <div id="watchlistList" class="card-list"></div>
+      </section>
+
+      <!-- ================= TRENDING PANEL ================= -->
+      <section class="panel" id="panel-trending">
+        <div id="trendingList" class="card-list"></div>
+      </section>
+
+      <!-- ================= CHATBOT PANEL ================= -->
+      <section class="panel" id="panel-chat">
+        <div id="chatLog" class="chat-log"></div>
+        <form id="chatForm" class="chat-input-row">
+          <input id="chatInput" type="text" placeholder="e.g. Suggest a light-hearted movie under 2 hours" autocomplete="off" />
+          <button type="submit" class="primary-btn small">Ask</button>
+        </form>
+      </section>
+
+    </main>
+
+    <footer class="statusbar" id="statusBar">Connecting to CineAI engine&hellip;</footer>
+  </div>
+
+  <script src="../utils/api.js"></script>
+  <script src="popup.js"></script>
+</body>
+</html>

@@ -1,0 +1,48 @@
+{
+  "manifest_version": 3,
+  "name": "CineAI \u2013 AI Movie Recommendations",
+  "version": "1.0.0",
+  "description": "AI-powered movie & TV show recommendations while you browse Netflix, Prime Video and YouTube.",
+  "permissions": ["storage", "activeTab", "scripting"],
+  "host_permissions": [
+    "https://www.netflix.com/*",
+    "https://www.primevideo.com/*",
+    "https://www.youtube.com/*",
+    "https://www.disneyplus.com/*",
+    "http://localhost:8000/*",
+    "https://api.themoviedb.org/*"
+  ],
+  "background": {
+    "service_worker": "background/background.js"
+  },
+  "action": {
+    "default_popup": "popup/popup.html",
+    "default_icon": {
+      "16": "icons/icon16.png",
+      "48": "icons/icon48.png",
+      "128": "icons/icon128.png"
+    }
+  },
+  "content_scripts": [
+    {
+      "matches": ["https://www.netflix.com/*"],
+      "js": ["content_scripts/extractor.js", "content_scripts/netflix.js"],
+      "run_at": "document_idle"
+    },
+    {
+      "matches": ["https://www.primevideo.com/*"],
+      "js": ["content_scripts/extractor.js", "content_scripts/primevideo.js"],
+      "run_at": "document_idle"
+    },
+    {
+      "matches": ["https://www.youtube.com/*"],
+      "js": ["content_scripts/extractor.js", "content_scripts/youtube.js"],
+      "run_at": "document_idle"
+    }
+  ],
+  "icons": {
+    "16": "icons/icon16.png",
+    "48": "icons/icon48.png",
+    "128": "icons/icon128.png"
+  }
+}
